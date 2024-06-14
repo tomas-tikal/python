@@ -20,11 +20,11 @@ for j in range(8):
 projekt_2_2_knihovna.vypis_sachovnice(sachovnice)
 
 while True:
-    radek, sloupec = projekt_2_2_knihovna.vstup_krizek()
+    radek, sloupec = projekt_2_2_knihovna.vstup_krizek(sachovnice)
     sachovnice[int(radek)][int(sloupec)] = 'X'
     projekt_2_2_knihovna.vypis_sachovnice(sachovnice)
     projekt_2_2_knihovna.kontrola_souseda(sachovnice, radek, sloupec, 'X')
-    radek, sloupec = projekt_2_2_knihovna.vstup_kolecko()
+    radek, sloupec = projekt_2_2_knihovna.vstup_kolecko(sachovnice)
     sachovnice[int(radek)][int(sloupec)] = 'O'
     projekt_2_2_knihovna.vypis_sachovnice(sachovnice)
     projekt_2_2_knihovna.kontrola_souseda(sachovnice, radek, sloupec, 'O')

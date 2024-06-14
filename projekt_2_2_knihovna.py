@@ -7,7 +7,7 @@ pole_num = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16, 17, 20, 21, 22, 
 sousedi = [-11, -10, -9, -1, 1, 9, 10, 11]
 sousedi_sousedu = [-22, -20, -18, -2, 2, 20, 22]
 
-def vstup_krizek():
+def vstup_krizek(sachovnicka):
     while True:
         print("Zadej pozici na šachovnici (hraje křížek):")
         radek = input("Zadej řádek (hodnota 0-7): ")
@@ -21,10 +21,14 @@ def vstup_krizek():
             print("Nezadali jste platný vstup - hodnota 0-7 - zkuste to znovu")
             continue
 
+        if (sachovnicka[int(radek)][int(sloupec)] == 'O'):
+            print("Tato pozice je obsazena soupeřem - zkuste to znovu")
+            continue
+
         break
     return radek, sloupec
 
-def vstup_kolecko():
+def vstup_kolecko(sachovnicka):
     while True:
         print("Zadej pozici na šachovnici (hraje kolečko):")
         radek = input("Zadej řádek (hodnota 0-7): ")
@@ -37,6 +41,12 @@ def vstup_kolecko():
         if (not (sloupec.isnumeric() and (int(sloupec) >= 0 and int(sloupec) <= 7))):
             print("Nezadali jste platný vstup - hodnota 0-7 - zkuste to znovu")
             continue
+
+        if (sachovnicka[int(radek)][int(sloupec)] == 'X'):
+            print("Tato pozice je obsazena soupeřem - zkuste to znovu")
+            continue
+
+
 
         break
     return radek, sloupec
