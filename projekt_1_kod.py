@@ -89,7 +89,8 @@ pocet_vyskytu_mala_pismena = {}
 pocet_vyskytu_cislo_pismena = {}
 
 for slovo in seznam_slov:
-
+    slovo = slovo.replace(',', '')
+    slovo = slovo.replace('.', '')
     # při výskytu slova s velkym prvnim pismenem se zvýší obsah počítadla o 1
     if(str.isupper(list(slovo)[0])):
         pocet_vyskytu_velke_pismeno[slovo] = pocet_vyskytu_velke_pismeno.get(slovo, 0) + 1
@@ -131,6 +132,7 @@ for slovo in seznam_slov:
             pocet_vyskytu.update({klic: 1})
         else:
             pocet_vyskytu.update({klic: pocet_vyskytu.get(klic) + 1})
+        #print(pocet_vyskytu)
 
 pocet_vyskytu_sorted = dict(sorted(pocet_vyskytu.items()))
 
