@@ -54,11 +54,6 @@ else:
 
 print("Nyni vyber jednu z variant textu nize. Povolene hodnoty jsou cislice 1,2 nebo 3: ")
 
-# priprava textu
-prvni_text = str(TEXTS[0])
-druhy_text = str(TEXTS[1])
-treti_text = str(TEXTS[2])
-
 #  vstup od uzivatele, otestovani povolenych hodnot a ulozeni volby do 'seznam_slov'
 while True:
     volba = input("Vloz cislici 1,2,3 nebo písmeno Q pro konec: \n")
@@ -84,7 +79,6 @@ while True:
         case default:
             print("Zkus to znova :) \n")
             continue
-         
 
 # pocet slov
 print("Výpis obsahuje", len(seznam_slov), "slov ve vybraném textu.")
@@ -101,22 +95,24 @@ for slovo in seznam_slov:
         pocet_vyskytu_velke_pismeno[slovo] = pocet_vyskytu_velke_pismeno.get(slovo, 0) + 1
 
     # při výskytu slova s velkymi pismeny se zvýší obsah počítadla o 1
-    elif(str.isupper(slovo)):
-        pocet_vyskytu_velka_pismena[slovo] = pocet_vyskytu_velka_pismena.get(slovo, 0) + 1
+    if(str.isupper(slovo)):
+        if(not je_cislice(slovo)):
+            continue
+        else:
+            pocet_vyskytu_velka_pismena[slovo] = pocet_vyskytu_velka_pismena.get(slovo, 0) + 1
 
     # při výskytu slova s malymi pismeny se zvýší obsah počítadla o 1
-    elif(str.islower(slovo)):
+    if(str.islower(slovo)):
         pocet_vyskytu_mala_pismena[slovo] = pocet_vyskytu_mala_pismena.get(slovo, 0) + 1
 
     # při výskytu cisla se zvýší obsah počítadla o 1
-    elif(str.isnumeric(slovo)):
+    if(str.isnumeric(slovo)):
         pocet_vyskytu_cislo_pismena[slovo] = pocet_vyskytu_cislo_pismena.get(slovo, 0) + 1
 
-print("Výpis obsahuje", len(pocet_vyskytu_velke_pismeno) , "s prvním velkým písmenem.")
-print("Výpis obsahuje", len(pocet_vyskytu_velka_pismena) , "velkými písmeny.")
-print("Výpis obsahuje", len(pocet_vyskytu_mala_pismena) , "malými písmeny.")
-print("Výpis obsahuje", len(pocet_vyskytu_cislo_pismena) , "čísel.")
-
+print("Výpis obsahuje", sum(pocet_vyskytu_velke_pismeno.values()) , "s prvním velkým písmenem.")
+print("Výpis obsahuje", sum(pocet_vyskytu_velka_pismena.values()) , "velkými písmeny.")
+print("Výpis obsahuje", sum(pocet_vyskytu_mala_pismena.values()) , "malými písmeny.")
+print("Výpis obsahuje", sum(pocet_vyskytu_cislo_pismena.values()) , "čísel.")
 
 # soucet vsech cisel
 pocet_vyskytu_velka_pismena = {}

@@ -4,3 +4,11 @@ def porovnej_slovnik(vstup, vzorek):
         if key not in vstup or vstup[key] != value:
             return False
     return True
+
+def je_cislice(vstup_slovo):
+    for vstup in vstup_slovo:
+        if vstup.isdigit():
+            return True
+    return False
+
+
