@@ -132,7 +132,6 @@ for slovo in seznam_slov:
             pocet_vyskytu.update({klic: 1})
         else:
             pocet_vyskytu.update({klic: pocet_vyskytu.get(klic) + 1})
-        print(pocet_vyskytu, slovo)
 
 pocet_vyskytu_sorted = dict(sorted(pocet_vyskytu.items()))
 
