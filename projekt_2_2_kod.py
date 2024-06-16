@@ -29,6 +29,7 @@ while True:
     sachovnice[int(radek)][int(sloupec)] = '.O.'
     projekt_2_2_knihovna.vypis_sachovnice(sachovnice)
     projekt_2_2_knihovna.kontrola_souseda(sachovnice, radek, sloupec, '.O.')
+    
 
 
 
