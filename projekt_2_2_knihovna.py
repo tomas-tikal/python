@@ -62,13 +62,13 @@ def kontrola_souseda(matice, r, s, znak):
             #print("je tam", pozice + i)
             souradnice_x = (pozice + i) // 10
             souradnice_y = (pozice + i) % 10
-            #print(souradnice_x, souradnice_y)
+            #print("X a Y:", souradnice_x, souradnice_y)
             if(matice[souradnice_x][souradnice_y] == znak):
                 #print("Znak:", znak, "má souseda vedle")
                 if((pozice + 2*i) in pole_num):
                     souradnice_xx = (pozice + 2*i) // 10
                     souradnice_yy = (pozice + 2*i) % 10
-                    #print(souradnice_xx, souradnice_yy)
+                    #print("XX a YY:",souradnice_xx, souradnice_yy)
                     if (matice[souradnice_xx][souradnice_yy] == znak):
                         print("Znak:", znak, "vyhrál")
                         exit()
