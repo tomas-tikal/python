@@ -14,6 +14,13 @@ while True:
         continue
     break
 
+while True:
+    pocet_poli = input("Zadej počet sousedních polí se stejným znakem, nutných pro výhru: ")
+    if(not pocet_poli.isdecimal()):
+        print('\"Počet sousedních polí\" musí být CELÉ KLADNÉ číslo, zkus to znova :)')
+        continue
+    break
+
 # naplnění prázdné tabulky 8x8 buněk
 sachovnice= []
 for j in range(int(velikost_sachovnice)):
@@ -24,13 +31,12 @@ for j in range(int(velikost_sachovnice)):
     sachovnice.append(sloupecek)
 
 # pomocná proměnná možných indexů v šachonici
+
 pole_num = []
 for j in range(int(velikost_sachovnice)):
     for i in range(int(velikost_sachovnice)):
         souradnice = str(j)+str(i)
         pole_num.append(int(souradnice))
-
-print(pole_num)
 
 # výpis prázdné šachovnice
 projekt_2_2_knihovna_rek.vypis_sachovnice(sachovnice, velikost_sachovnice)
@@ -40,12 +46,12 @@ while True:
     radek, sloupec = projekt_2_2_knihovna_rek.vstup(sachovnice, 'X', velikost_sachovnice, pole_num)
     sachovnice[int(radek)][int(sloupec)] = '.X.'
     projekt_2_2_knihovna_rek.vypis_sachovnice(sachovnice, velikost_sachovnice)
-    projekt_2_2_knihovna_rek.kontrola_souseda(sachovnice, radek, sloupec, '.X.', pole_num)
+    projekt_2_2_knihovna_rek.kontrola_souseda(sachovnice, radek, sloupec, '.X.', pole_num, pocet_poli)
     #radek, sloupec = projekt_2_2_knihovna_rek.vstup_kolecko(sachovnice)
     radek, sloupec = projekt_2_2_knihovna_rek.vstup(sachovnice, '0', velikost_sachovnice, pole_num)
     sachovnice[int(radek)][int(sloupec)] = '.O.'
     projekt_2_2_knihovna_rek.vypis_sachovnice(sachovnice, velikost_sachovnice)
-    projekt_2_2_knihovna_rek.kontrola_souseda(sachovnice, radek, sloupec, '.O.', pole_num)
+    projekt_2_2_knihovna_rek.kontrola_souseda(sachovnice, radek, sloupec, '.O.', pole_num, pocet_poli)
 
 
 
