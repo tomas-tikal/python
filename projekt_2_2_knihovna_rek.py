@@ -1,9 +1,9 @@
 
-# pomocná proměnná pro ohraničení indexů šachovnice
+# pomocná proměnná pro výběr sousedních indexů šachovnice
 sousedi = [-11, -10, -9, -1, 1, 9, 10, 11]
 
 
-def vstup(sachovnicka, hrac, velikost, pole_num):
+def vstup(sachovnicka, hrac, velikost):
     while True:
         print("Zadej pozici na šachovnici (hraje:", hrac, ")")
         radek = input("Zadej číslo řádku: ")
@@ -41,10 +41,8 @@ def kontrola_souseda(matice, r, s, znak, pole_num, pocet_rekurzi):
     for i in sousedi:
         while (spravna_pole < int(pocet_rekurzi)):
             if((pozice + spravna_pole * i) in pole_num):
-                #print("je tam", pozice + i)
                 souradnice_x = (pozice + spravna_pole * i) // 10
                 souradnice_y = (pozice + spravna_pole * i) % 10
-                #print("X a Y:", souradnice_x, souradnice_y)
                 if(matice[souradnice_x][souradnice_y] == znak):
                     spravna_pole += 1
                     continue
