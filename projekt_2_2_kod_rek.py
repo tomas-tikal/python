@@ -15,10 +15,15 @@ while True:
     break
 
 while True:
-    pocet_poli = input("Zadej počet sousedních polí se stejným znakem, nutných pro výhru: ")
+    print("Zadej počet sousedních polí se stejným znakem, nutných pro výhru.")
+    pocet_poli = input("číslo musí být min. 2 a maximálně hodnota velikosti šachového pole: ")
     if(not pocet_poli.isdecimal()):
         print('\"Počet sousedních polí\" musí být CELÉ KLADNÉ číslo, zkus to znova :)')
         continue
+    if(not ((int(pocet_poli) >= 2) and (int(pocet_poli) <= int(velikost_sachovnice)))):
+        print('\"Počet sousedních polí\" musí být mezi hodnotami 2 a', velikost_sachovnice,  'zkus to znova :)')
+        continue
+
     break
 
 # naplnění prázdné tabulky 8x8 buněk
