@@ -58,6 +58,7 @@ pocet_vyskytu_mala_pismena = {}
 pocet_vyskytu_cislo_pismena = {}
 
 for slovo in seznam_slov:
+    # print("aktuální slovo", slovo)
     # při výskytu slova s velkym prvnim pismenem se zvýší obsah počítadla o 1
     if(str.isupper(list(slovo)[0])):
         pocet_vyskytu_velke_pismeno[slovo] = pocet_vyskytu_velke_pismeno.get(slovo, 0) + 1
@@ -65,8 +66,6 @@ for slovo in seznam_slov:
     # při výskytu slova s velkymi pismeny se zvýší obsah počítadla o 1
     if(str.isupper(slovo)):
         if(not je_cislice(slovo)):
-            continue
-        else:
             pocet_vyskytu_velka_pismena[slovo] = pocet_vyskytu_velka_pismena.get(slovo, 0) + 1
 
     # při výskytu slova s malymi pismeny se zvýší obsah počítadla o 1
