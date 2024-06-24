@@ -1,6 +1,9 @@
+import collections
 
-# pomocná proměnná pro výběr sousedních indexů šachovnice
-sousedi = [-11, -10, -9, -1, 1, 9, 10, 11]
+# pomocná proměnná pro výběr sousedních indexů šachovnice diagonál
+# sousedi = [-11, -9, 9, 11]
+sousedi1 = [-11, 11]
+sousedi2 = [-9, 9]
 
 
 def vstup(sachovnicka, hrac, velikost):
@@ -12,21 +15,18 @@ def vstup(sachovnicka, hrac, velikost):
         if (not (radek.isnumeric() and (int(radek) >= 0 and int(radek) <= int(velikost)))):
             print("Nezadali jste platný vstup - levé číslo v daném poli - zkuste to znovu")
             continue
-
-        if (not (sloupec.isnumeric() and (int(sloupec) >= 0 and int(sloupec) <= int(velikost)))):
+        elif (not (sloupec.isnumeric() and (int(sloupec) >= 0 and int(sloupec) <= int(velikost)))):
             print("Nezadali jste platný vstup - pravé číslo v daném poli - zkuste to znovu")
             continue
-
-        if((hrac == 'X') and  (sachovnicka[int(radek)][int(sloupec)] == '.O.')):
+        elif ((hrac == 'X') and (sachovnicka[int(radek)][int(sloupec)] == '.O.')):
             print("Tato pozice je obsazena soupeřem - zkuste to znovu")
             continue
-
-        if((hrac == 'O') and  (sachovnicka[int(radek)][int(sloupec)] == '.X.')):
+        elif ((hrac == 'O') and  (sachovnicka[int(radek)][int(sloupec)] == '.X.')):
             print("Tato pozice je obsazena soupeřem - zkuste to znovu")
             continue
-
         break
     return radek, sloupec
+
 
 def vypis_sachovnice(vstup, velikost):
     i = 0
@@ -35,24 +35,82 @@ def vypis_sachovnice(vstup, velikost):
         i += 1
 
 
-def kontrola_souseda(matice, r, s, znak, pole_num, pocet_rekurzi):
+def kontrola_souseda(matice, r, s, znak, pole_num, pocet_rek, velikost_sachovnice):
+    uhadnuto = []
+    i = 0
+    while i < int(pocet_rek):
+        uhadnuto.append(znak)
+        i += 1
+
+    # kontrola_radku
+    radek = matice[int(r)]
+    str_list = ' '.join(map(str, radek))
+    str_sublist = ' '.join(map(str, uhadnuto))
+    if(str_sublist in str_list):
+        print("Hráč:", znak, "vyhrál")
+        exit()
+
+    # kontrola_sloupce
+    i = 0
+    sloupec = []
+    while i < int(velikost_sachovnice):
+        sloupec.append(matice[i][int(s)])
+        i += 1
+
+    str_list = ' '.join(map(str, sloupec))
+    str_sublist = ' '.join(map(str, uhadnuto))
+    if(str_sublist in str_list):
+        print("Hráč:", znak, "vyhrál")
+        exit()
+
+
+    # kontrola diagonál - klesající směr
     pozice = int(r+s)
-    spravna_pole = 1
-    for i in sousedi:
-        while (spravna_pole < int(pocet_rekurzi)):
-            if((pozice + spravna_pole * i) in pole_num):
-                souradnice_x = (pozice + spravna_pole * i) // 10
-                souradnice_y = (pozice + spravna_pole * i) % 10
-                if(matice[souradnice_x][souradnice_y] == znak):
-                    spravna_pole += 1
-                    continue
-                else:
-                    break
+    uroven = 1
+    uhlopricka = []
+    uhlopricka.append(znak)
+    pred = True
+
+    for i in sousedi1:
+        while ((pozice + uroven * i) in pole_num):
+            souradnice_x = (pozice + uroven * i) // 10
+            souradnice_y = (pozice + uroven * i) % 10
+            if(pred):
+                uhlopricka.insert(0, matice[souradnice_x][souradnice_y])
             else:
-                break
-        if(spravna_pole == int(pocet_rekurzi)):
-            print("Hráč:", znak, "vyhrál")
-            exit()
+                uhlopricka.append(matice[souradnice_x][souradnice_y])
+            uroven += 1
+        uroven = 1
+        pred = False
 
-    return True
+    str_list = ' '.join(map(str, uhlopricka))
+    str_sublist = ' '.join(map(str, uhadnuto))
+    if(str_sublist in str_list):
+        print("Hráč:", znak, "vyhrál")
+        exit()
 
+
+    # kontrola diagonál - stoupající směr
+    pozice = int(r+s)
+    uroven = 1
+    uhlopricka = []
+    uhlopricka.append(znak)
+    pred = True
+
+    for i in sousedi2:
+        while ((pozice + uroven * i) in pole_num):
+            souradnice_x = (pozice + uroven * i) // 10
+            souradnice_y = (pozice + uroven * i) % 10
+            if(pred):
+                uhlopricka.insert(0, matice[souradnice_x][souradnice_y])
+            else:
+                uhlopricka.append(matice[souradnice_x][souradnice_y])
+            uroven += 1
+        uroven = 1
+        pred = False
+
+    str_list = ' '.join(map(str, uhlopricka))
+    str_sublist = ' '.join(map(str, uhadnuto))
+    if(str_sublist in str_list):
+        print("Hráč:", znak, "vyhrál")
+        exit()
