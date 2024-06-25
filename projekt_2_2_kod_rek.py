@@ -7,8 +7,8 @@ email: tikal@3t.cz
 discord: ti_to_80805
 """
 import projekt_2_2_knihovna_rek
-# import collections
 
+# zadání velikosti čtvercového hracího pole (šachovnice), včetně validace vstupu
 while True:
     velikost_sachovnice = input("Zadej velikost strany šachového pole pro hru: ")
     if (not velikost_sachovnice.isdecimal()):
@@ -22,6 +22,7 @@ while True:
             break
     break
 
+# zadání počtu prvků v jednom směru, nutného k výhře, včetně validace vstupu
 while True:
     print("Zadej počet sousedních polí se stejným znakem, nutných pro výhru.")
     pocet_poli = input("číslo musí být min. 2 a maximálně hodnota velikosti šachového pole: ")
@@ -33,7 +34,7 @@ while True:
         continue
     break
 
-# naplnění prázdné hrací šachovnice
+# naplnění prázdného hracího pole (šachovnice)
 sachovnice= []
 for j in range(int(velikost_sachovnice)):
     sloupecek= []
@@ -42,7 +43,7 @@ for j in range(int(velikost_sachovnice)):
         sloupecek.append(retezec)
     sachovnice.append(sloupecek)
 
-# pomocná proměnná možných indexů v šachovnici
+# pomocná proměnná existujících indexů v hracím poli (šachovnici)
 pole_num = []
 for j in range(int(velikost_sachovnice)):
     for i in range(int(velikost_sachovnice)):
@@ -57,7 +58,7 @@ while True:
     sachovnice[int(radek)][int(sloupec)] = '.X.'
     projekt_2_2_knihovna_rek.vypis_sachovnice(sachovnice, velikost_sachovnice)
     projekt_2_2_knihovna_rek.kontrola_souseda(sachovnice, radek, sloupec, '.X.', pole_num, pocet_poli, velikost_sachovnice)
-    radek, sloupec = projekt_2_2_knihovna_rek.vstup(sachovnice, '0', velikost_sachovnice)
+    radek, sloupec = projekt_2_2_knihovna_rek.vstup(sachovnice, 'O', velikost_sachovnice)
     sachovnice[int(radek)][int(sloupec)] = '.O.'
     projekt_2_2_knihovna_rek.vypis_sachovnice(sachovnice, velikost_sachovnice)
     projekt_2_2_knihovna_rek.kontrola_souseda(sachovnice, radek, sloupec, '.O.', pole_num, pocet_poli, velikost_sachovnice)
